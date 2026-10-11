@@ -5,7 +5,7 @@ import multer from 'multer'
 import nodemailer from 'nodemailer'
 import { mkdir } from 'node:fs/promises'
 import { resolve, extname } from 'node:path'
-import { randomUUID, timingSafeEqual, createHash } from 'node:crypto'
+import { randomUUID } from 'node:crypto'
 import { Family } from './models.js'
 import { initial } from '../src/data/initial.js'
 import { learningRouter } from './learning/routes.js'
@@ -16,25 +16,10 @@ const importedVital = await readVitalImport()
 const seededInitial = { ...initial, vital: mergeVitalImport(initial.vital, importedVital) }
 const app = express()
 const production = process.env.NODE_ENV === 'production'
-if (production && (!process.env.APP_USERNAME || !process.env.APP_PASSWORD)) {
- throw new Error('APP_USERNAME and APP_PASSWORD are required in production.')
-}
 app.get('/api/health', (_req, res) => {
  res.set('Cache-Control', 'no-store')
  res.json({database: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected'})
 })
-if (production) {
- const digest = value => createHash('sha256').update(value).digest()
- const expected = digest(`${process.env.APP_USERNAME}:${process.env.APP_PASSWORD}`)
- app.use((req, res, next) => {
-  const authorization = req.get('authorization') || ''
-  const credentials = authorization.startsWith('Basic ') ? Buffer.from(authorization.slice(6), 'base64').toString('utf8') : ''
-  if (timingSafeEqual(digest(credentials), expected)) return next()
-  res.set('WWW-Authenticate', 'Basic realm="Bubbi Cafe", charset="UTF-8"')
-  res.set('Cache-Control', 'no-store')
-  res.status(401).send('Sign in to access Bubbi Cafe.')
- })
-}
 const uploadPath = resolve(process.env.UPLOAD_DIR || 'server/uploads')
 await mkdir(uploadPath,{recursive:true})
 app.use(express.json({limit:'1mb'}))

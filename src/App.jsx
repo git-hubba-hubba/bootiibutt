@@ -16,6 +16,7 @@ import Shows from './pages/Shows'
 import AdventureMap from './pages/AdventureMap'
 import { useFamily } from './hooks/useFamily'
 import './older-kid.css'
+import './responsive.css'
 
 function App() {
   const [role, setRole] = useState('Mom')

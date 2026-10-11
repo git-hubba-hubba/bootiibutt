@@ -1,0 +1,86 @@
+/* Shared sizing keeps long content inside its grid or flex column. */
+.app-shell :is(.card, .stat-card, .file-card, .event-details, .family-moments-copy,
+  .shows-hero > div, .shows-provider-grid > a > div, .tutor-welcome > div) {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.app-shell :is(.section-heading, .page-heading, .insurance-heading-actions) {
+  flex-wrap: wrap;
+}
+.app-shell :is(.modal, .vital-editor) {
+  max-height: 88dvh;
+  overscroll-behavior: contain;
+}
+.app-shell .explorer-header nav { min-width: 0; max-width: 100%; }
+.app-shell .explorer-header nav button { flex-shrink: 0; }
+
+/* The parent sidebar leaves less space for content on tablets. */
+@media (min-width: 651px) and (max-width: 1000px) {
+  .app-shell .family-moments { grid-template-columns: minmax(0, 1fr); }
+  .app-shell .family-memory-scene { height: 340px; max-width: 550px; width: 100%; margin-inline: auto; }
+  .app-shell .shows-hero { gap: 16px; padding: 24px; }
+  .app-shell .shows-hero-art { width: 90px; height: 110px; }
+  .app-shell .shows-hero-art svg { width: 44px; }
+  .app-shell .tutor-choices { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 650px) {
+  /* Keep the family selector in normal flow instead of over the logo. */
+  .app-shell .sidebar .family-switch {
+    position: static;
+    width: 100%;
+    margin: 14px 0 0;
+  }
+  .app-shell .family-switch button { min-height: 44px; justify-content: center; font-size: 12px; }
+  .app-shell .sidebar nav { margin-inline: 0; padding: 4px 0 8px; }
+  .app-shell .sidebar nav button { min-height: 44px; font-size: 12px; }
+  .app-shell .topbar { height: auto; min-height: 60px; padding: 10px 16px; flex-wrap: wrap; }
+  .app-shell .breadcrumb { min-width: 0; flex-wrap: wrap; }
+  .app-shell .header-actions { margin-left: auto; }
+  .app-shell .emergency-button { min-height: 44px; font-size: 11px; }
+  .app-shell .explorer-header nav {
+    flex-basis: 100%;
+    width: 100%;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding: 4px 2px 8px;
+  }
+  .app-shell .explorer-family > button { min-width: 44px; min-height: 44px; }
+  .app-shell .explorer-logo { min-width: 0; max-width: 100%; }
+  .app-shell .explorer-logo small { overflow-wrap: anywhere; }
+  .app-shell :is(.primary, .secondary, .light-button, .danger, .vital-edit, .icon-button) {
+    min-height: 44px;
+  }
+  .app-shell .icon-button { min-width: 44px; flex-shrink: 0; }
+  .app-shell .field :is(input, select, textarea),
+  .app-shell .shows-search-row input { font-size: 16px; }
+  .app-shell .field :is(input, select) { min-height: 44px; }
+  .app-shell .modal { padding: 20px; }
+  .app-shell .form-grid, .app-shell .tutor-choices { grid-template-columns: minmax(0, 1fr); }
+  .app-shell .tutor-topic { width: 100%; min-width: 0; padding: 14px; }
+  .app-shell .tutor-topic > div { min-width: 0; overflow-wrap: anywhere; }
+  .app-shell .tutor-topic > svg { flex-shrink: 0; margin-left: auto; }
+  .app-shell .conversation-tabs { flex-wrap: wrap; gap: 12px; }
+  .app-shell .conversation-tabs button { min-height: 44px; }
+  .app-shell .conversation-story { flex-basis: 70%; overflow-wrap: anywhere; }
+  .app-shell .moment-photo-controls button { width: 44px; height: 44px; }
+  .app-shell .family-memory-caption { flex-wrap: wrap; }
+  .app-shell .shows-hero { flex-wrap: wrap; padding: 22px; }
+  .app-shell .shows-section-heading { flex-wrap: wrap; }
+  .app-shell .insurance-person { white-space: normal; overflow-wrap: anywhere; }
+  .app-shell .insurance-costs { max-width: 100%; overflow-x: auto; }
+  .app-shell .arcade-touch-controls { flex-wrap: wrap; }
+  .app-shell .adventure-bottom > p { min-width: 0; flex-basis: 100%; }
+}
+
+@media (max-width: 380px) {
+  .app-shell main { padding-inline: 12px; }
+  .app-shell .explorer-header { padding-inline: 12px; gap: 12px; }
+  .app-shell .explorer-family { margin-left: 0; }
+  .app-shell .stats-grid { grid-template-columns: minmax(0, 1fr); }
+  .app-shell .stat-card { padding: 16px; }
+  .app-shell .stat-label, .app-shell .stat-card small { font-size: 11px; }
+  .app-shell .stat-card strong { font-size: 15px; }
+  .app-shell .tutor-welcome { flex-wrap: wrap; padding: 18px; }
+  .app-shell .family-moments-copy h1 { font-size: 32px; }
+}

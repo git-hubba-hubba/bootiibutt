@@ -114,7 +114,7 @@ Vital Info opens as read-only summary cards for birthday, allergies, diet, healt
 
 Push this `julian` repository to your Git provider. In Render, choose **New → Blueprint**, connect the repository, and use `render.yaml`. The blueprint assumes `package.json` is at the repository root. For a repository containing the outer folder, use `julian/render.yaml` as the blueprint path and add `rootDir: julian` to its service.
 
-The blueprint creates a paid Starter web service and a 1 GB persistent disk. Review the displayed cost before creating it. Set `APP_USERNAME`, a strong unique `APP_PASSWORD`, and `MONGODB_URI` when prompted. Use a hosted MongoDB database and allow Render’s outbound IPs in its network settings.
+The blueprint creates a paid Starter web service and a 1 GB persistent disk. Review the displayed cost before creating it. Set `MONGODB_URI` when prompted. Use a hosted MongoDB database and allow Render’s outbound IPs in its network settings.
 
 For manual Web Service setup:
 
@@ -123,11 +123,11 @@ For manual Web Service setup:
 - Start: `npm start`
 - Health check: `/api/health`
 - Node version: `24.20.0`
-- Environment: `NODE_ENV=production`, `APP_USERNAME`, `APP_PASSWORD`, `MONGODB_URI`, `UPLOAD_DIR=/var/data/uploads`.
+- Environment: `NODE_ENV=production`, `MONGODB_URI`, `UPLOAD_DIR=/var/data/uploads`.
 - Persistent disk: mount at `/var/data` for photos and documents.
 
-Express serves the frontend and API together on Render’s assigned port. The browser asks for the shared login. Missing production login credentials stop startup. Only `/api/health` is public; it checks the process and reports database status. A disconnected database uses the existing demo behavior.
+Express serves the frontend and API together on Render’s assigned port. There is no sign-in requirement. `/api/health` checks the process and reports database status. A disconnected database uses the existing demo behavior.
 
 Optional learning and emergency provider credentials are listed in `.env.example`; set these in Render’s Environment settings. Local `.env` files, local database records, and ignored private card files are not uploaded. Private card originals need a separate deliberate migration. Never commit secrets or private cards.
 
-The shared login does not provide separate parent accounts or server-enforced Mom/Dad/Julian permissions. The production gaps above still apply before storing sensitive child records. Use Render’s HTTPS URL.
+The hosted app is publicly accessible and does not provide parent accounts or server-enforced Mom/Dad/Julian permissions. The production gaps above still apply before storing sensitive child records.
