@@ -1,0 +1,71 @@
+/* Role themes live here so feature layouts stay independent of visual styling. */
+.parent-mode {
+  --theme-ink: #24354b;
+  --theme-muted: #62748a;
+  --theme-accent: #285f69;
+  color: var(--theme-ink);
+  background: #f3f5f8;
+}
+.parent-mode .sidebar { background: #fff; border-color: #e0e6ee; }
+.parent-mode .brand { color: #24354b; }
+.parent-mode .brand-icon, .parent-mode .brand-dot { color: #527a83; }
+.parent-mode .brand-sub { color: #738297; font-size: 9px; margin-left: 0; margin-top: 12px; }
+.parent-mode .family-label, .parent-mode .nav-label { color: #7b899c; }
+.parent-mode .family-switch { border-color: #e0e6ef; background: #f4f6f9; }
+.parent-mode .family-switch button { color: #5d7087; }
+.parent-mode .family-switch .selected { color: #24354b; box-shadow: 0 2px 6px #20324d10; }
+.parent-mode .sidebar nav button { color: #62748a; border-radius: 7px; }
+.parent-mode .sidebar nav button:hover { background: #f3f6f9; }
+.parent-mode .sidebar nav button.active { background: #eaf1f3; color: #285f69; }
+.parent-mode .active-dot { background: #285f69; }
+.parent-mode .sidebar-note { background: #f3f6f9; border-color: #e5eaf0; }
+.parent-mode .sidebar-note strong { color: #4b6379; }
+.parent-mode .sidebar-note p, .parent-mode .sidebar-footer small { color: #718095; }
+.parent-mode .sidebar-footer { border-color: #e6ebf1; }
+.parent-mode .topbar { border-color: #e0e6ee; }
+.parent-mode .breadcrumb, .parent-mode .together { color: #6b7e91; }
+.parent-mode .breadcrumb strong { color: #354d65; }
+.parent-mode .greeting h2 { color: #24354b; font-size: 25px; }
+.parent-mode .eyebrow, .parent-mode .greeting p:not(.eyebrow) { color: #697e93; }
+.parent-mode .connection-status { color: #587c72; }
+.parent-mode .welcome-banner { background: linear-gradient(120deg, #e7eff1, #edf2ef); border-color: #dce5e8; border-radius: 12px; }
+.parent-mode .welcome-banner h1 { color: #284951; font-size: clamp(27px, 2.8vw, 39px); }
+.parent-mode .welcome-banner p { color: #617e85; }
+.parent-mode .pill { color: #597c80; }
+.parent-mode .hero-art { filter: saturate(.65); }
+.parent-mode .card, .parent-mode .stat-card { border-color: #e0e6ee; border-radius: 10px; box-shadow: 0 3px 12px #23354c04; }
+.parent-mode .stat-label, .parent-mode .stat-card small, .parent-mode .event-details p { color: #74859a; }
+.parent-mode .stat-card strong { color: #2a4158; }
+.parent-mode .stat-card:hover { border-color: #b3c8d0; box-shadow: 0 4px 14px #20354d08; }
+.parent-mode .section-heading h2, .parent-mode .card h2 { color: #2d435a; }
+.parent-mode .primary { background: #285f69; color: #fff; border-radius: 6px; }
+.parent-mode .primary:hover { background: #1c4d57; }
+.parent-mode .secondary { background: #eaf0f3; color: #395d70; border-radius: 6px; }
+.parent-mode .text-button { color: #39717c; font-size: 10px; }
+.parent-mode .add-plan { border-color: #cddbe2; background: #f6f9fb; color: #4c7785; }
+.parent-mode .date-tile { background: #eff3f7; border-color: #e2e8ef; }
+.parent-mode .date-tile strong { color: #466277; }
+.parent-mode .date-tile small { color: #798c9c; }
+.parent-mode .event-row, .parent-mode .list-item { border-color: #e8edf3; }
+.parent-mode .event-type { color: #99764e; }
+.parent-mode .owner { color: #8e654d; }
+.parent-mode .owner.dad { color: #527967; }
+.parent-mode .field { color: #50677e; }
+.parent-mode .field input, .parent-mode .field textarea, .parent-mode .field select { background: #fbfcfe; border-color: #d9e2ec; color: #2f4359; }
+.parent-mode .muted, .parent-mode .empty p, .parent-mode .list-item p { color: #6c8195; }
+.parent-mode .notice { background: #edf3f5; color: #52717e; }
+.parent-mode .notice.warning { background: #fff1dd; color: #956724; }
+.parent-mode .form-message { color: #477569; }
+.parent-mode .kid-card { background: #eeeef8; border-color: #e0e2f1; }
+.parent-mode .kid-card p { color: #817796; }
+.parent-mode .kid-card .pill { color: #817496; }
+.parent-mode .kid-card h2 { color: #62577d; }
+.parent-mode .memory-upload { background: #eff4f6; border-color: #c7d8df; }
+.parent-mode .memory-upload strong, .parent-mode .memory-upload small { color: #668393; }
+.parent-mode .main-footer { color: #7b8b9f; border-color: #e0e6ee; }
+.parent-mode .month-day { background: #f7f9fc; border-color: #e5ebf2; }
+.parent-mode .month-day.selected { background: #eaf2f4; border-color: #8baeb9; }
+.parent-mode .month-day small { background: #e9f0f3; color: #496d80; }
+.parent-mode progress { accent-color: #397783; }
+.parent-mode :is(button, a, input, select, textarea):focus-visible { outline-color: #5b93b2; }
+

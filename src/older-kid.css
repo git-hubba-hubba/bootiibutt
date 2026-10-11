@@ -1,0 +1,177 @@
+/* Julian's expedition theme: slate, petrol blue, forest green, and copper. */
+.app-shell.child-mode {
+  --kid-bg:#101c28; --kid-panel:#1a2b3a; --kid-border:#314859;
+  --kid-text:#e4edf2; --kid-muted:#a3b6c3; --kid-accent:#71c7d2;
+  background:radial-gradient(ellipse at 80% 0,#1e3b4966,transparent 55%),var(--kid-bg);
+  color:var(--kid-text); color-scheme:dark;
+}
+.app-shell.child-mode :is(h1,h2,h3), .app-shell.child-mode .explorer-logo {font-family:'Manrope',sans-serif;font-weight:800;letter-spacing:-.6px}
+.app-shell.child-mode main {max-width:1320px;padding-bottom:35px}
+.app-shell.child-mode .explorer-header {background:#13212e;border-color:#304451;padding:21px 34px}
+.app-shell.child-mode .explorer-logo {font-size:23px;letter-spacing:-.7px;color:#e7eff3}
+.app-shell.child-mode .explorer-logo>span:first-child {font-size:35px;filter:saturate(.65)}
+.app-shell.child-mode .explorer-logo small {font-family:'DM Sans',sans-serif;font-size:8px;letter-spacing:1.4px;color:#92a9b8;margin-top:8px}
+.app-shell.child-mode .explorer-header nav button {border-radius:7px;color:#9eb4c4;min-height:46px;font-size:12px}
+.app-shell.child-mode .explorer-header nav button.selected {background:#223c4a;border-color:#3e6878;color:#94d6de;box-shadow:none}
+.app-shell.child-mode .explorer-header nav button:hover {background:#213443}
+.app-shell.child-mode .explorer-family>button {color:#a0b2c0}
+.app-shell.child-mode .explorer-family .avatar {font-family:'DM Sans',sans-serif;background:#283e50;color:#b6c8d6;border-radius:8px}
+.app-shell.child-mode .explorer-family .selected .avatar {background:#2d5359;color:#b0dce0;outline-color:#4f818b}
+.app-shell.child-mode .greeting {background:linear-gradient(110deg,#203847,#233e4c);border:1px solid #3b5665;border-radius:12px;box-shadow:none;min-height:110px;padding:23px 28px}
+.app-shell.child-mode .greeting h2 {font-size:25px;color:#e4eef2}
+.app-shell.child-mode .greeting p:not(.eyebrow) {color:#a8bec9;font-size:13px}
+.app-shell.child-mode .greeting::before,.app-shell.child-mode .greeting::after,.app-shell.child-mode .child-welcome-art,.app-shell.child-mode .greeting-sun {display:none}
+.app-shell.child-mode .eyebrow {color:#81a8b7;letter-spacing:1.8px;font-size:9px}
+.app-shell.child-mode .section-heading h2 {font-size:27px;color:#e0ebf1}
+.app-shell.child-mode .card {background:var(--kid-panel);border:1px solid var(--kid-border);border-radius:12px;box-shadow:none}
+.app-shell.child-mode .card :is(h2,h3) {color:#dce9f0}
+.app-shell.child-mode .card h2 {font-size:24px}
+.app-shell.child-mode .primary {border:1px solid #699da8;border-radius:7px;background:#356979;color:#f3fafb;box-shadow:0 2px 0 #0b1923;min-height:46px;font-size:13px;font-weight:700;padding:12px 19px;transition:background .15s}
+.app-shell.child-mode .primary:hover {background:#3d7a8a;transform:none;box-shadow:0 2px 0 #0b1923}
+.app-shell.child-mode .secondary {background:#263e4d;border:1px solid #426272;color:#b9d1dc;border-radius:7px;box-shadow:none;min-height:44px;font-size:12px;padding:11px 16px}
+.app-shell.child-mode .secondary:hover {background:#304c5a}
+.app-shell.child-mode .text-button {color:#82bdcf;font-size:12px}
+.app-shell.child-mode .badge {background:#29434d;color:#9bced6;border:1px solid #42616b;border-radius:5px;font-size:10px;letter-spacing:.3px}
+.app-shell.child-mode .field {color:#adc2ce;font-weight:500;font-size:12px}
+.app-shell.child-mode .field :is(input,select,textarea) {background:#122330;border:1px solid #405969;color:#dfebf1;border-radius:7px;font-size:15px;min-height:44px}
+.app-shell.child-mode .muted,.app-shell.child-mode .form-message {color:#a4bdc9;font-size:13px}
+.app-shell.child-mode .notice {background:#25404a;color:#b0d1d7;border:1px solid #3e5e68}
+.app-shell.child-mode .notice.warning {background:#423b2e;border-color:#6d5b3e;color:#e0c48e}
+.app-shell.child-mode .empty {color:#7faebd}
+.app-shell.child-mode .empty h3 {font-size:23px;color:#b7cbd7}
+.app-shell.child-mode .empty p {color:#9bb0be;font-size:14px}
+.app-shell.child-mode :is(button,a,input,select,textarea,canvas,[tabindex]):focus-visible {outline:3px solid #dcad70;outline-offset:4px}
+/* The expedition remains interactive, with a dusk landscape and map-like signs. */
+.app-shell.child-mode .adventure-intro h1 {font-family:'Manrope',sans-serif;font-size:clamp(30px,3.2vw,43px);color:#e6eef4;letter-spacing:-1.2px}
+.app-shell.child-mode .adventure-intro>div>p:not(.eyebrow) {color:#9fb7c5;font-size:14px}
+.app-shell.child-mode .adventure-star-count {border:1px solid #5a574b;background:#302e2a;border-radius:9px;box-shadow:none}
+.app-shell.child-mode .adventure-star-count strong,.app-shell.child-mode .adventure-star-count>span:first-child {font-family:'Manrope',sans-serif;color:#d4b37a}
+.app-shell.child-mode .adventure-star-count strong small,.app-shell.child-mode .adventure-star-count>span:last-child {color:#b3a58e}
+.app-shell.child-mode .adventure-landscape {border:1px solid #456272;border-radius:15px;box-shadow:0 18px 50px #0003;background:#284655}
+.app-shell.child-mode .adventure-landscape::after {content:'';position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(#b6e5df0b 1px,transparent 1px),linear-gradient(90deg,#b6e5df0b 1px,transparent 1px);background-size:40px 40px;z-index:1}
+.app-shell.child-mode .adventure-scenery>g[fill='#fff'] {opacity:.2}
+.app-shell.child-mode .world-decoration {display:none}
+.app-shell.child-mode .world-destination .destination-art {display:grid;place-items:center;width:83px;height:83px;border-radius:16px;background:#203642eb;color:#92c9d2;border:1px solid #6b96a0;filter:drop-shadow(0 6px 0 #1d354740);transform:none;margin-bottom:12px}
+.app-shell.child-mode .world-destination:hover .destination-art,.app-shell.child-mode .world-destination:focus-visible .destination-art {transform:translateY(-5px);background:#2c4b58}
+.app-shell.child-mode .destination-art svg {width:39px;height:39px}
+.app-shell.child-mode .destination-sign {border:1px solid #648080;border-radius:8px;box-shadow:0 4px 14px #0f283033;background:#182e3aef;color:#d7e8ed;transform:none;padding:14px 18px;min-width:205px}
+.app-shell.child-mode .destination-sign strong {font-family:'Manrope',sans-serif;font-size:20px;font-weight:800}
+.app-shell.child-mode .destination-sign small {color:#89b2bd;font-size:7px;letter-spacing:1.8px}
+.app-shell.child-mode .destination-sign>span {color:#b4c6cd;font-size:10px}
+.app-shell.child-mode .rocket .destination-art {background:#36333fe8;border-color:#9c859e;color:#c4afd1}
+.app-shell.child-mode .meadow .destination-art {background:#38362ee8;border-color:#9e9177;color:#d4c19c}
+.app-shell.child-mode .world-hidden-star {color:#ffe0a2;font-size:30px;filter:drop-shadow(0 0 6px #ddbc6877)}
+.app-shell.child-mode .world-guide>button {filter:saturate(.45);font-size:32px}
+.app-shell.child-mode .world-guide p {background:#172e39ed;border:1px solid #648087;border-radius:8px;color:#d1e3e6;padding:12px 15px}
+.app-shell.child-mode .world-guide small {color:#7fa8b3;letter-spacing:.8px}
+.app-shell.child-mode .adventure-bottom>p {color:#91b6c7}
+.app-shell.child-mode .adventure-bottom .primary {background:#87633d;border-color:#b99164;box-shadow:0 2px 0 #0b1923}
+/* Learning lab. */
+.app-shell.child-mode .tutor-welcome {background:linear-gradient(110deg,#223b48,#253244);border:1px solid #3d5d6b;border-radius:12px}
+.app-shell.child-mode .tutor-welcome>span {font-size:49px;filter:saturate(.6);transform:none}
+.app-shell.child-mode .tutor-welcome h2 {color:#d7e9f0;font-size:25px}
+.app-shell.child-mode .tutor-welcome p {color:#a0b9c7;font-size:14px}
+.app-shell.child-mode .tutor-topic {border:1px solid #415969;border-radius:9px;background:#213847;color:#c3dae5}
+.app-shell.child-mode .tutor-topic small {color:#94b2c3}
+.app-shell.child-mode .tutor-topic>span {font-size:28px;filter:saturate(.6)}
+.app-shell.child-mode .tutor-topic>svg {color:#88b9c9}
+.app-shell.child-mode .sample-topic {background:#213e4a;border-color:#46717f}
+.app-shell.child-mode .tutor-variety>span {background:#20333f;border-color:#3e5361;color:#97b1c0;border-radius:6px}
+.app-shell.child-mode .tutor-variety>span.active {background:#2a4e58;color:#b8e2e8;border-color:#54838a}
+.app-shell.child-mode .tutor-game-icon {background:#2b4350;border-radius:10px;filter:saturate(.6)}
+.app-shell.child-mode .tutor-teach {background:#1d3642;border:1px solid #3c626f;border-radius:9px}
+.app-shell.child-mode .tutor-teach strong {color:#85becb}
+.app-shell.child-mode .tutor-teach p {color:#bfdae3;font-size:17px}
+.app-shell.child-mode .tutor-round h3 {color:#d5e6ed;font-size:23px}
+.app-shell.child-mode .tutor-instruction {color:#a4becb}
+.app-shell.child-mode .tutor-choices>button {background:#203541;border:1px solid #44616f;color:#c6dce5;border-radius:9px;font-size:16px}
+.app-shell.child-mode .tutor-choices>button>span {background:#304c5c;color:#accfdf;border-radius:6px}
+.app-shell.child-mode .tutor-choices>button.selected {background:#315563;border-color:#73a4b3;color:#e0f2f7}
+.app-shell.child-mode .tutor-assignments fieldset {border:1px solid #405b6b;border-radius:9px}
+.app-shell.child-mode .tutor-assignments legend {color:#b6d1de}
+.app-shell.child-mode .tutor-assignments button {background:#263e4c;border:1px solid #506b7a;color:#b8d1dd;border-radius:7px;box-shadow:none}
+.app-shell.child-mode .tutor-assignments button.selected {background:#31594e;border-color:#609582;color:#d1ece1;box-shadow:none}
+.app-shell.child-mode .sequence-path button {background:#294a43;border:1px solid #547b6c;color:#c5e3d6;border-radius:8px}
+.app-shell.child-mode .sequence-path button>span {background:#375f52;color:#b9dfcd}
+.app-shell.child-mode .sequence-pieces button {background:#3b3c32;border:1px solid #7b7358;color:#ded1a9;border-radius:7px}
+.app-shell.child-mode .tutor-hint {background:#3d3b2d;border-color:#6d6746;color:#dccd9b;border-radius:8px}
+.app-shell.child-mode .tutor-feedback {color:#a4ced6}
+.app-shell.child-mode .tutor-explanation {background:#28453b;border-color:#496c59;border-radius:9px}
+.app-shell.child-mode .tutor-explanation strong {color:#96c5aa}
+.app-shell.child-mode .tutor-explanation p {color:#c0ddcb}
+.app-shell.child-mode .tutor-finish p,.app-shell.child-mode .tutor-start p,.app-shell.child-mode .tutor-sources {color:#a2bccb}
+.app-shell.child-mode .tutor-loading {background:#253f4b;border-color:#49717e;color:#b7d3dc;border-radius:9px}
+/* Deep sea station. */
+.app-shell.child-mode .ocean-banner {background:linear-gradient(120deg,#223c4d,#1c4857);border:1px solid #3f7182;border-radius:12px;box-shadow:none}
+.app-shell.child-mode .ocean-banner h1 {font-size:32px;color:#d5edf4}
+.app-shell.child-mode .ocean-banner p:not(.eyebrow) {color:#a8c8d4}
+.app-shell.child-mode .ocean-banner .eyebrow {color:#78b2c6}
+.app-shell.child-mode .ocean-banner>span {filter:saturate(.6);font-size:45px}
+.app-shell.child-mode .ocean-filters button {border:1px solid #456373;border-radius:6px;background:#203440;color:#a4c2d0;min-height:44px}
+.app-shell.child-mode .ocean-filters button.selected {background:#355d6c;border-color:#6996a7;color:#e1f4fa;box-shadow:none}
+.app-shell.child-mode .ocean-link-note {color:#a2b8c5}
+.app-shell.child-mode .ocean-video-card {border-color:#375565;box-shadow:none}
+.app-shell.child-mode .ocean-video-content h3 {color:#c4dde9;font-size:22px}
+.app-shell.child-mode .ocean-video-content>p:not(.eyebrow) {color:#a1bdcd}
+.app-shell.child-mode .ocean-video-content .primary {background:#356979;border-color:#699da8;box-shadow:0 2px 0 #0b1923}
+.app-shell.child-mode .ocean-discussion {background:#203642;border-color:#37525f}
+.app-shell.child-mode .ocean-discussion strong {color:#82b0c1}
+.app-shell.child-mode .ocean-discussion p {color:#acc4d0}
+.app-shell.child-mode .ocean-format {background:#d1b783;color:#3a3020;border-radius:4px}
+.app-shell.child-mode .aquarium {background:#192c39;border:1px solid #426677;border-radius:13px;box-shadow:none}
+.app-shell.child-mode .aquarium-heading {background:#203b49;border-color:#385d6c}
+.app-shell.child-mode .aquarium-heading h2 {color:#c6e3ed;font-size:26px}
+.app-shell.child-mode .aquarium-heading p:not(.eyebrow) {color:#a0c2d0}
+.app-shell.child-mode .aquarium-count {background:#2c4855;color:#bad8e5;border:1px solid #4f7283;border-radius:6px}
+.app-shell.child-mode .aquarium-tank {border:2px solid #567a89;border-radius:8px;background:linear-gradient(180deg,#4c9baf,#276780 45%,#153950)}
+.app-shell.child-mode .aquarium-animal-picker {background:#20343e;border-color:#3c5966}
+.app-shell.child-mode .picker-heading,.app-shell.child-mode .picker-heading h3 {color:#adc9d5;font-size:16px}
+.app-shell.child-mode .aquarium-animal-picker>p {color:#9bb7c4}
+.app-shell.child-mode .picker-animals button {background:#293f4b;border:1px solid #49626d;border-radius:7px;color:#c2d8e2;box-shadow:none}
+.app-shell.child-mode .picker-animals button:hover:not(:disabled) {background:#35525e;border-color:#6c939c}
+.app-shell.child-mode .picker-emoji {background:#38515d;filter:saturate(.7);border-radius:6px}
+.app-shell.child-mode .aquarium-controls .primary {background:#356979;border-color:#699da8;box-shadow:0 2px 0 #0b1923}
+.app-shell.child-mode .aquarium-friend {background:#223e4a;border:1px solid #426675;border-radius:8px}
+.app-shell.child-mode .friend-details p,.app-shell.child-mode .aquarium-status {color:#a0c0ce}
+.app-shell.child-mode .carousel {background:#1c3341;border:1px solid #46616f;border-radius:10px}
+.app-shell.child-mode .carousel-caption {background:#233b48;color:#bbd0dd}
+/* Arcade: steel cabinets and warm accent lighting rather than candy pastels. */
+.app-shell.child-mode .bubbi-arcade {background:radial-gradient(ellipse at 50% 0,#223c4b,transparent 70%),#121d29;border:1px solid #3d5968;border-radius:15px;box-shadow:0 12px 40px #0003}
+.app-shell.child-mode .arcade-marquee {background:linear-gradient(110deg,#203544,#263c4d);border:1px solid #506675;border-radius:9px;box-shadow:none}
+.app-shell.child-mode .arcade-marquee h1 {font-family:'Manrope',sans-serif!important;font-weight:800;font-size:clamp(35px,5vw,61px);letter-spacing:4px!important;color:#e5e9dd!important;text-shadow:0 3px 0 #577078}
+.app-shell.child-mode .arcade-marquee h1>span {display:none}
+.app-shell.child-mode .marquee-lights {color:#c5a36d;text-shadow:0 0 8px #ddac5a55}
+.app-shell.child-mode .arcade-kicker {color:#8cb4c4;letter-spacing:3px}
+.app-shell.child-mode .arcade-marquee>p,.app-shell.child-mode .arcade-marquee-badges {color:#adc3d0}
+.app-shell.child-mode .arcade-filters>button {background:#243744;border-color:#435b6d;color:#a3becd;border-radius:6px}
+.app-shell.child-mode .arcade-filters>button.selected {background:#38586a;color:#dae9f1;border-color:#6992a5;box-shadow:none}
+.app-shell.child-mode .arcade-surprise {border-color:#6d705d;color:#c9c7a9;border-radius:6px}
+.app-shell.child-mode .arcade-cabinet {border-color:#506778;border-radius:9px;background:linear-gradient(145deg,#2b4150,#1e303d);box-shadow:0 6px 0 #0c1620}
+.app-shell.child-mode .cabinet-title {background:#263b48;border-color:#14222e}
+.app-shell.child-mode .cabinet-title h2 {font-family:'Manrope',sans-serif;color:#b9d3df;font-size:18px;font-weight:800;letter-spacing:-.4px}
+.app-shell.child-mode .cabinet-title>button {color:#bba47a}
+.app-shell.child-mode .cabinet-screen {border-color:#101b26;border-radius:5px;filter:saturate(.7)}
+.app-shell.child-mode .cabinet-emoji {font-size:56px;transform:none}
+.app-shell.child-mode .cabinet-description p {color:#a9c0cd}
+.app-shell.child-mode .cabinet-category {color:#8db0c0}
+.app-shell.child-mode .cabinet-deck {background:#2f4655;border-color:#46606e}
+.app-shell.child-mode .cabinet-deck>button {background:#b39a6d;color:#272a27;border-radius:5px;box-shadow:0 2px 0 #0d1b24}
+.app-shell.child-mode .cabinet-base {background:#182934;color:#8babbc}
+.app-shell.child-mode .arcade-play-room {background:#192c3a;border-color:#425e70;border-radius:11px}
+.app-shell.child-mode .arcade-play-heading {background:#213947;border-color:#3c5665}
+.app-shell.child-mode .arcade-play-heading h2 {color:#d3e7f1;font-family:'Manrope',sans-serif;font-size:25px}
+.app-shell.child-mode .arcade-instructions {background:#1d3443;color:#a9c2d1}
+.app-shell.child-mode .arcade-back,.app-shell.child-mode .arcade-play-heading>span,.app-shell.child-mode .arcade-live-result,.app-shell.child-mode .arcade-lobby-note {color:#a2becd}
+.app-shell.child-mode .arcade-scoreboard {color:#b3ccd9}
+.app-shell.child-mode .arcade-scoreboard>button {background:#2b4556;color:#c1dbe8;border-color:#527184}
+.app-shell.child-mode .arcade-button {background:#527d91;border:1px solid #7fa5b7;color:#edf7fb;box-shadow:0 2px 0 #101f2b;border-radius:6px;font-size:13px}
+.app-shell.child-mode .arcade-outline-button {background:#283f4d;color:#aac6d5;border-color:#4e7083;border-radius:6px}
+.app-shell.child-mode .arcade-play-footer {border-color:#3c5665}
+.app-shell.child-mode .arcade-touch-controls>button {border-color:#5d849b;background:#34596f;color:#d9edf6;box-shadow:0 3px 0 #102533;border-radius:8px}
+.app-shell.child-mode .arcade-touch-controls>.arcade-control-action {background:#987b4d;border-color:#c6a46d;color:#fff1d3}
+.app-shell.child-mode .arcade-memory-board>button {background:linear-gradient(135deg,#3e657a,#64869c);border-color:#80a3b7;color:#d2e4ef;box-shadow:0 4px 0 #1c3c50;border-radius:9px;font-family:'Manrope',sans-serif}
+.app-shell.child-mode .arcade-memory-board>button:nth-child(3n) {background:linear-gradient(135deg,#476c66,#6a9380);border-color:#8bada0}
+.app-shell.child-mode .arcade-memory-board>button.matched {background:#587863;border-color:#96b797;color:#e8efe1}
+@media(max-width:900px){.app-shell.child-mode .explorer-header{padding:18px 24px}.app-shell.child-mode .greeting h2{font-size:23px}.app-shell.child-mode .destination-sign strong{font-size:19px}}
+@media(max-width:650px){.app-shell.child-mode .explorer-header{padding:17px 15px}.app-shell.child-mode .explorer-logo{font-size:20px}.app-shell.child-mode .explorer-logo small{font-size:6px;letter-spacing:.8px}.app-shell.child-mode .explorer-logo>span:first-child{font-size:27px}.app-shell.child-mode .explorer-header nav button{font-size:9px;border-radius:5px;padding:8px 10px}.app-shell.child-mode .greeting{padding:20px;min-height:105px}.app-shell.child-mode .greeting h2{font-size:22px}.app-shell.child-mode .adventure-intro h1{font-size:30px}.app-shell.child-mode .adventure-intro>div>p:not(.eyebrow){font-size:12px}.app-shell.child-mode .world-destination .destination-art{width:58px;height:58px;border-radius:10px;margin-bottom:9px}.app-shell.child-mode .destination-art svg{width:28px;height:28px}.app-shell.child-mode .destination-sign{min-width:137px;padding:12px 8px;border-radius:6px}.app-shell.child-mode .destination-sign strong{font-size:16px}.app-shell.child-mode .destination-sign small{font-size:6px;letter-spacing:1px}.app-shell.child-mode .destination-sign>span{font-size:8px}.app-shell.child-mode .world-guide p{font-size:10px;padding:9px}.app-shell.child-mode .world-guide small{font-size:7px}.app-shell.child-mode .world-hidden-star{font-size:25px}.app-shell.child-mode .ocean-banner h1{font-size:27px}.app-shell.child-mode .ocean-banner>span{font-size:28px}.app-shell.child-mode .tutor-welcome h2{font-size:22px}.app-shell.child-mode .tutor-welcome>span{font-size:36px}.app-shell.child-mode .tutor-welcome p{font-size:13px}.app-shell.child-mode .arcade-marquee h1{font-size:36px;letter-spacing:2px!important}.app-shell.child-mode .cabinet-title h2{font-size:15px}.app-shell.child-mode .cabinet-emoji{font-size:43px}.app-shell.child-mode .aquarium-heading h2{font-size:23px}.app-shell.child-mode .section-heading h2{font-size:24px}.app-shell.child-mode .explorer-family>button{font-size:8px}}
+@media(prefers-reduced-motion:reduce){.app-shell.child-mode .primary{transition:none}.app-shell.child-mode .world-destination:hover .destination-art{transform:none}}

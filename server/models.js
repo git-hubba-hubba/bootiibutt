@@ -1,0 +1,13 @@
+import mongoose from 'mongoose'
+const contact = new mongoose.Schema({ name: {type:String,maxLength:200}, phone:{type:String,maxLength:200}, email:{type:String,maxLength:200} },{_id:false})
+const event = new mongoose.Schema({id:{type:String,required:true},title:{type:String,required:true,maxLength:120},owner:{type:String,enum:['Mom','Dad'],required:true},type:String,start:{type:String,required:true},end:{type:String,required:true},location:{type:String,maxLength:200}},{_id:false})
+const item = new mongoose.Schema({id:String,name:{type:String,required:true,maxLength:120},cost:{type:Number,min:1,max:1000000},votes:[{type:String,enum:['Mom','Dad']}],commitments:{Mom:{type:Number,min:0,default:0},Dad:{type:Number,min:0,default:0}}},{_id:false})
+const file = new mongoose.Schema({id:String,name:String,url:String,owner:{type:String,enum:['Mom','Dad']}},{_id:false})
+const insuranceService = new mongoose.Schema({label:String,value:String,kind:{type:String,enum:['phone','website','text']}},{_id:false})
+const insuranceCost = new mongoose.Schema({label:String,inNetwork:String,outOfNetwork:String},{_id:false})
+const insurance = new mongoose.Schema({id:{type:String,required:true},category:String,carrier:String,coveredPerson:String,relationship:String,subscriber:String,memberId:String,groupNumber:String,plan:String,network:String,effectiveDate:String,asOfDate:String,dentalOffice:String,notes:String,claimsAddress:String,sourceName:String,sourceUrl:String,services:[insuranceService],costs:[insuranceCost]},{_id:false})
+const vital = new mongoose.Schema({birthday:String,allergies:String,diet:String,health:String,behavioral:String,medical:String,dental:String,vision:String,insurance:[insurance],insuranceImports:[String],contacts:{Mom:[contact],Dad:[contact]}},{_id:false})
+const lessonRound = new mongoose.Schema({prompt:String,cards:[String],targets:[String],solution:[Number],explanation:String,hint:String},{_id:false})
+const lesson = new mongoose.Schema({id:String,title:String,concept:String,intro:String,kind:{type:String,enum:['quiz','sort','match','sequence']},rounds:[lessonRound],sources:[new mongoose.Schema({title:String,url:String},{_id:false})],origin:{type:String,enum:['ai','sample']},topic:String,aid:String},{_id:false})
+const family = new mongoose.Schema({key:{type:String,unique:true},revision:{type:Number,default:0},events:[event],items:[item],vital,photos:[file],documents:[file],activities:[new mongoose.Schema({id:String,topic:{type:String,maxLength:100},aid:{type:String,maxLength:3000},lesson,approved:{type:Boolean,default:false}},{_id:false})]},{timestamps:true})
+export const Family = mongoose.model('Family',family)
