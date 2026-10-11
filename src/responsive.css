@@ -84,3 +84,67 @@
   .app-shell .tutor-welcome { flex-wrap: wrap; padding: 18px; }
   .app-shell .family-moments-copy h1 { font-size: 32px; }
 }
+
+/* Expedition cards replace fixed map coordinates at every screen size. */
+.app-shell .adventure-world .adventure-landscape {
+  aspect-ratio: auto;
+  min-height: 0;
+  padding: clamp(12px, 3vw, 32px);
+}
+.app-shell .adventure-world .adventure-scenery { width: 100%; left: 0; opacity: .3; }
+.destination-carousel { position: relative; z-index: 2; min-width: 0; }
+.destination-track {
+  position: relative;
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  border-radius: 14px;
+  scrollbar-width: thin;
+  scrollbar-color: #89b2bd #182e3a;
+}
+.destination-slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  scroll-snap-align: start;
+  padding: clamp(22px, 5vw, 52px);
+  border: 1px solid #648080;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #203b4cf5, #142634f5);
+  color: #d7e8ed;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+.destination-slide.rocket { background: linear-gradient(135deg, #383148f5, #1d2637f5); }
+.destination-slide.lagoon { background: linear-gradient(135deg, #144655f5, #142c3af5); }
+.destination-slide.meadow { background: linear-gradient(135deg, #433a2ef5, #1e2d35f5); }
+.carousel-zone { font-size: 11px; letter-spacing: 2px; color: #a7c4ce; margin-bottom: 24px; }
+.carousel-art { display: grid; place-items: center; width: 110px; height: 110px; border: 1px solid #6b96a0; border-radius: 24px; background: #ffffff0a; color: #a4d7de; margin-bottom: 24px; }
+.destination-slide h2 { font-size: clamp(26px, 5vw, 40px); line-height: 1.2; overflow-wrap: anywhere; }
+.destination-slide .eyebrow { color: #a7c4ce; }
+.carousel-description { color: #b4c6cd; line-height: 1.7; margin: 14px 0 24px; max-width: 440px; }
+.destination-slide .primary { max-width: 100%; white-space: normal; min-height: 48px; }
+.carousel-relics { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 24px; }
+.carousel-relics button { display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 12px; border: 1px solid #a38b5d; border-radius: 8px; color: #ffe0a2; background: #302e2a; }
+.carousel-relics button span { font-size: 22px; }
+.carousel-controls { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 16px; }
+.carousel-controls > button { min-width: 44px; min-height: 44px; }
+.carousel-dots { display: flex; }
+.carousel-dots button { width: 44px; height: 44px; border: 0; background: transparent; display: grid; place-items: center; padding: 0; }
+.carousel-dots span { width: 8px; height: 8px; background: #8fa7b4; border-radius: 50%; }
+.carousel-dots [aria-current='true'] span { background: #ffe0a2; width: 12px; height: 12px; }
+.carousel-position { text-align: center; color: #c0d6df; font-size: 12px; margin-top: 8px; }
+.app-shell .adventure-world .world-guide { position: relative; inset: auto; max-width: 100%; margin-top: 20px; align-items: center; z-index: 2; }
+.app-shell .adventure-world .world-guide p { max-width: none; flex: 1; }
+@media (max-width: 650px) {
+  .app-shell .adventure-intro { flex-wrap: wrap; }
+  .app-shell .adventure-intro > div:first-child { min-width: 0; flex: 1 1 200px; }
+  .app-shell .adventure-intro h1 { max-width: none; }
+  .carousel-controls { gap: 4px; }
+  .carousel-dots button { width: 36px; }
+  .carousel-art { width: 84px; height: 84px; }
+  .carousel-art svg { width: 48px; height: 48px; }
+}

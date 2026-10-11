@@ -1,0 +1,73 @@
+/* Blue foundations with orange actions, shared across family spaces. */
+.app-shell {
+  --theme-ink: #14365a;
+  --theme-muted: #526d88;
+  --theme-accent: #175fb5;
+  --blue: #175fb5;
+  --orange: #ff983f;
+  --orange-ink: #703000;
+  accent-color: var(--blue);
+}
+.app-shell.parent-mode { background: #edf4fc; color: var(--theme-ink); }
+.app-shell.parent-mode :is(.sidebar, .topbar, .card, .stat-card) { border-color: #cddff2; }
+.app-shell.parent-mode :is(.brand, .greeting h2, .section-heading h2, .card h2, .stat-card strong, .family-moments-copy h1, .conversation-story h2) { color: #143e70; }
+.app-shell :is(.brand-icon, .brand-dot, .greeting-sun) { color: #c45308; }
+.app-shell.parent-mode .sidebar nav button.active { background: #deedff; color: #144e94; box-shadow: inset 3px 0 #eb761a; }
+.app-shell.parent-mode .sidebar nav button:hover { background: #edf4fc; }
+.app-shell.parent-mode .active-dot { background: #d65c08; }
+.app-shell .family-switch { background: #edf4fc; border-color: #cddff2; }
+.app-shell .avatar-0 { background: #ffead8; color: #873b06; }
+.app-shell .avatar-1 { background: #dcecff; color: #174f8b; }
+.app-shell .avatar-2 { background: #ffdfc3; color: #873b06; }
+.app-shell :is(.primary, .arcade-button, .arcade-surprise),
+.app-shell.child-mode .adventure-bottom .primary,
+.app-shell .ocean-video-content .primary {
+  background: #ff983f; color: #252b35; border-color: #ffad65; box-shadow: none;
+}
+.app-shell :is(.primary, .arcade-button, .arcade-surprise):hover,
+.app-shell.child-mode .adventure-bottom .primary:hover { background: #ffad65; color: #17283e; box-shadow: none; }
+.app-shell.parent-mode :is(.secondary, .light-button, .vital-edit) { background: #e3efff; color: #174f8b; border-color: #b8d2ef; }
+.app-shell.parent-mode :is(.text-button, .eyebrow, .pill, .vital-group-title, .insurance-more > summary) { color: #205b96; }
+.app-shell.parent-mode :is(.welcome-banner, .ocean-banner, .tutor-welcome) { background: linear-gradient(120deg, #e0edff, #fff0e1); border-color: #c3d9f1; }
+.app-shell.parent-mode :is(.ocean-banner h1, .tutor-welcome h2, .welcome-banner h1) { color: #174f8b; }
+.app-shell.parent-mode :is(.ocean-banner p:not(.eyebrow), .tutor-welcome p, .welcome-banner p) { color: #526d88; }
+.app-shell.parent-mode :is(.peach, .purple, .green) { background: #ffead8; color: #a34506; }
+.app-shell.parent-mode :is(.month-day.selected, .tutor-choices > button.selected) { background: #e3efff; border-color: #548dcc; color: #174f8b; }
+.app-shell .ocean-filters button.selected { background: #175fb5; border-color: #175fb5; color: #fff; }
+.app-shell .family-play-invite h2 { color: #b94d05; }
+.app-shell .moment-actions > button > svg:first-child { background: #e1edff; color: #175fb5; }
+.app-shell .moment-actions > button:nth-child(2) > svg:first-child { background: #ffead8; color: #a34506; }
+.app-shell.child-mode {
+  --kid-bg: #091d37; --kid-panel: #102e51; --kid-border: #315b87;
+  --kid-text: #edf5ff; --kid-muted: #b1c7df; --kid-accent: #ffad65;
+  background: radial-gradient(ellipse at 80% 0, #175fb544, transparent 60%), #091d37;
+  color: #edf5ff;
+}
+.app-shell.child-mode .explorer-header { background: #0c2646; border-color: #315b87; }
+.app-shell.child-mode .explorer-logo { color: #ffad65; }
+.app-shell.child-mode .explorer-header nav button { color: #c2d7ed; }
+.app-shell.child-mode .explorer-header nav button.selected { background: #174f8b; border-color: #ff983f; color: #fff1e4; }
+.app-shell.child-mode .explorer-header nav button:hover { background: #153a63; }
+.app-shell.child-mode .explorer-family .selected .avatar { outline-color: #ff983f; }
+.app-shell.child-mode :is(.card, .game-panel, .tutor-welcome, .tutor-topic, .ocean-banner, .aquarium-panel) { background: #102e51; border-color: #315b87; }
+.app-shell.child-mode :is(.secondary, .light-button) { background: #174f8b; color: #edf5ff; border-color: #548dcc; }
+.app-shell .adventure-world .adventure-landscape { background: #0e2c50; border-color: #315b87; }
+.app-shell .destination-slide,
+.app-shell .destination-slide:is(.rocket, .lagoon, .meadow) { background: linear-gradient(135deg, #174f8bf5, #0c2646f5); border-color: #4779aa; color: #edf5ff; }
+.app-shell .carousel-art { background: #ff983f18; border-color: #ff983f; color: #ffad65; }
+.app-shell .carousel-dots [aria-current='true'] span { background: #ff983f; }
+.app-shell .carousel-relics button { background: #462a16; border-color: #e78d45; color: #ffca9a; }
+.app-shell.child-mode .adventure-star-count { background: #462a16; border-color: #e78d45; }
+.app-shell.child-mode .adventure-star-count :is(strong, span:first-child) { color: #ffad65; }
+.app-shell.child-mode .world-guide p { background: #0c2646; border-color: #4779aa; }
+.app-shell .bubbi-arcade { background: #0c2646; border-color: #315b87; }
+.app-shell .arcade-marquee { background: linear-gradient(135deg, #174f8b, #0c2646); border-color: #ff983f; }
+.app-shell .arcade-marquee h1 { color: #ffad65; text-shadow: 0 3px #713006; }
+.app-shell .arcade-filters > button.selected { background: #ff983f; border-color: #ffad65; color: #252b35; }
+.app-shell .shows-page { --shows-ink: #14365a; --shows-muted: #526d88; --shows-bg: #edf4fc; --shows-border: #cddff2; }
+.app-shell.child-mode .shows-page { --shows-ink: #edf5ff; --shows-muted: #b1c7df; --shows-panel: #102e51; --shows-bg: #0c2646; --shows-border: #315b87; }
+.app-shell .shows-hero { background: linear-gradient(125deg, #174f8b, #0c2646); border-color: #4779aa; }
+.app-shell .shows-search-row > button, .app-shell .shows-pbs a { background: #ff983f; color: #252b35; }
+.app-shell .shows-hero-art { color: #ffad65; border-color: #e78d45; }
+.app-shell :is(button, a, input, select, textarea, summary, canvas, [tabindex]):focus-visible { outline-color: #175fb5; }
+.app-shell.child-mode :is(button, a, input, select, textarea, summary, canvas, [tabindex]):focus-visible { outline-color: #ffad65; }

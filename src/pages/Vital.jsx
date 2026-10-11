@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { SectionHeading } from '../components/UI'
 import InsuranceCard from '../components/InsuranceCard'
 import VitalSummaryCard from '../components/VitalSummaryCard'
@@ -7,7 +7,22 @@ import VitalEditor from '../components/VitalEditor'
 import { vitalFields } from '../data/vitalFields'
 import './Vital.css'
 
+const tabs = [['essentials', 'Essentials'], ['providers', 'Providers'], ['contacts', 'Contacts'], ['insurance', 'Insurance']]
+
 export default function Vital({ data, update, status }) {
+  const [activeTab, setActiveTab] = useState('essentials')
+  const tabButtons = useRef([])
+  function moveTab(event, index) {
+    let next
+    if(event.key === 'ArrowRight') next = (index + 1) % tabs.length
+    else if(event.key === 'ArrowLeft') next = (index + tabs.length - 1) % tabs.length
+    else if(event.key === 'Home') next = 0
+    else if(event.key === 'End') next = tabs.length - 1
+    else return
+    event.preventDefault()
+    setActiveTab(tabs[next][0])
+    tabButtons.current[next].focus()
+  }
   const [editor, setEditor] = useState(null)
   const [message, setMessage] = useState('')
   const vital = data.vital
@@ -26,10 +41,11 @@ export default function Vital({ data, update, status }) {
     <SectionHeading eyebrow="CARE STARTS WITH KNOWING" title="Julian’s vital information"><span className="vital-dashboard-label">CARE AT A GLANCE</span></SectionHeading>
     <p className="vital-dashboard-intro">The details that help you care for Julian, together. Edit any section when something changes.</p>
     <p className="vital-save-message" role="status">{message}</p>
-    <section aria-labelledby="vital-essentials-title"><h2 className="vital-group-title" id="vital-essentials-title">Everyday essentials</h2><div className="vital-summary-grid">{vitalFields.slice(0,5).map(field => <VitalSummaryCard key={field.key} field={field} value={vital[field.key]} onEdit={() => edit({kind:'field',field,value:vital[field.key]})}/>)}</div></section>
-    <section aria-labelledby="vital-care-title"><h2 className="vital-group-title" id="vital-care-title">Providers &amp; care</h2><div className="vital-summary-grid vital-providers-grid">{vitalFields.slice(5).map(field => <VitalSummaryCard key={field.key} field={field} value={vital[field.key]} onEdit={() => edit({kind:'field',field,value:vital[field.key]})}/>)}</div></section>
-    <section aria-labelledby="vital-contacts-title"><h2 className="vital-group-title" id="vital-contacts-title">People to call</h2><div className="detail-columns">{['Mom','Dad'].map(parent => <TrustedContacts key={parent} parent={parent} contacts={vital.contacts?.[parent]} onEdit={index => edit({kind:'contact',parent,index,value:vital.contacts?.[parent]?.[index] || {}})}/>)}</div></section>
-    <section className="insurance-section" aria-labelledby="insurance-heading"><h2 className="vital-group-title" id="insurance-heading">Insurance &amp; coverage cards</h2><p className="muted">Cardholders and dependent relationships are listed as shown on each card. Expand a card for contacts, benefits, and the original document.</p>{vital.insurance?.length ? <div className="insurance-grid">{vital.insurance.map(record => <InsuranceCard key={record.id} record={record} compact onEdit={() => edit({kind:'insurance',value:record})}/>)}</div> : <div className="card vital-insurance-empty">No insurance cards have been added yet.</div>}</section>
+    <div className="vital-tabs" role="tablist" aria-label="Vital information sections">{tabs.map(([id, label], index) => <button type="button" key={id} ref={element => {tabButtons.current[index] = element}} id={`vital-tab-${id}`} role="tab" aria-selected={activeTab === id} aria-controls={`vital-panel-${id}`} tabIndex={activeTab === id ? 0 : -1} onClick={() => setActiveTab(id)} onKeyDown={event => moveTab(event, index)}>{label}</button>)}</div>
+    <section id="vital-panel-essentials" role="tabpanel" aria-labelledby="vital-tab-essentials" hidden={activeTab !== 'essentials'} tabIndex={0}><h2 className="vital-group-title" id="vital-essentials-title">Everyday essentials</h2><div className="vital-summary-grid">{vitalFields.slice(0,5).map(field => <VitalSummaryCard key={field.key} field={field} value={vital[field.key]} onEdit={() => edit({kind:'field',field,value:vital[field.key]})}/>)}</div></section>
+    <section id="vital-panel-providers" role="tabpanel" aria-labelledby="vital-tab-providers" hidden={activeTab !== 'providers'} tabIndex={0}><h2 className="vital-group-title" id="vital-care-title">Providers &amp; care</h2><div className="vital-summary-grid vital-providers-grid">{vitalFields.slice(5).map(field => <VitalSummaryCard key={field.key} field={field} value={vital[field.key]} onEdit={() => edit({kind:'field',field,value:vital[field.key]})}/>)}</div></section>
+    <section id="vital-panel-contacts" role="tabpanel" aria-labelledby="vital-tab-contacts" hidden={activeTab !== 'contacts'} tabIndex={0}><h2 className="vital-group-title" id="vital-contacts-title">People to call</h2><div className="detail-columns">{['Mom','Dad'].map(parent => <TrustedContacts key={parent} parent={parent} contacts={vital.contacts?.[parent]} onEdit={index => edit({kind:'contact',parent,index,value:vital.contacts?.[parent]?.[index] || {}})}/>)}</div></section>
+    <section className="insurance-section" id="vital-panel-insurance" role="tabpanel" aria-labelledby="vital-tab-insurance" hidden={activeTab !== 'insurance'} tabIndex={0}><h2 className="vital-group-title" id="insurance-heading">Insurance &amp; coverage cards</h2><p className="muted">Cardholders and dependent relationships are listed as shown on each card. Expand a card for contacts, benefits, and the original document.</p>{vital.insurance?.length ? <div className="insurance-grid">{vital.insurance.map(record => <InsuranceCard key={record.id} record={record} compact onEdit={() => edit({kind:'insurance',value:record})}/>)}</div> : <div className="card vital-insurance-empty">No insurance cards have been added yet.</div>}</section>
     {editor && <VitalEditor editor={editor} onSave={save} onClose={() => setEditor(null)}/>}
   </div>
 }

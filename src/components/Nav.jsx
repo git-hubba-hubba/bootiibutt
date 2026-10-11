@@ -1,36 +1,38 @@
+import { useState } from 'react'
 import Icon from './Icon'
 import ChildNav from './ChildNav'
-const familyLinks = [
-  ['Overview', 'home', 'Family home'],
-  ['Family calendar', 'calendar', 'Family calendar'],
-  ['Shared budget', 'wallet', 'Shared budget'],
-  ['Vital information', 'heart', 'Vital information'],
-  ['Family gallery', 'photo', 'Family gallery'],
-  ['Documents', 'file', 'Documents'],
-]
-const childLinks = [
-  ['Adventure map', 'spark', 'Explore his world'],
-  ['Learning time', 'book', 'Learning time'],
-  ['Play & discover', 'game', 'Bubbi’s arcade'],
-  ['Squid & octopus', 'video', 'Squid & octopus'],
-  ['Shows', 'video', 'Shows'],
+const groups = [
+  { title: 'Family essentials', links: [
+    ['Family calendar', 'calendar', 'Calendar'],
+    ['Shared budget', 'wallet', 'Budget'],
+    ['Vital information', 'heart', 'Vital info'],
+  ] },
+  { title: 'Photos & files', links: [
+    ['Family gallery', 'photo', 'Gallery'],
+    ['Documents', 'file', 'Documents'],
+  ] },
+  { title: 'Julian’s activities', links: [
+    ['Adventure map', 'spark', 'Explore'],
+    ['Learning time', 'book', 'Learning'],
+    ['Play & discover', 'game', 'Arcade'],
+    ['Squid & octopus', 'video', 'Ocean'],
+    ['Shows', 'video', 'Shows'],
+  ] },
 ]
 export default function Nav({ page, setPage, role, setRole }) {
-  const parentMode = role === 'Mom' || role === 'Dad'
-  if (!parentMode) return <ChildNav page={page} setPage={setPage} setRole={setRole}/>
+  const [menuOpen, setMenuOpen] = useState(false)
+  if (role === 'Julian') return <ChildNav page={page} setPage={setPage} setRole={setRole}/>
+  function navigate(target) { setPage(target); setMenuOpen(false) }
   function renderLink([target, icon, label]) {
-    return <button key={target} className={page === target ? 'active' : ''} data-nav={icon} aria-current={page === target ? 'page' : undefined} onClick={() => setPage(target)}><Icon name={icon}/>{label}{page === target && <span className="active-dot"/>}</button>
+    return <button key={target} className={page === target ? 'active' : ''} aria-current={page === target ? 'page' : undefined} onClick={() => navigate(target)}><Icon name={icon}/><span>{label}</span></button>
   }
-  return <aside className="sidebar">
-    <a className="brand" href="#" onClick={event => {event.preventDefault();setPage('Overview')}}><span className="brand-icon">✳</span>Bubbi Cafe<span className="brand-dot">.</span></a>
-    <p className="brand-sub">Your family, thoughtfully connected.</p>
-    <div className="family-label">OUR FAMILY SPACE</div>
-    <div className="family-switch" role="group" aria-label="Choose a family space">{['Mom','Dad','Julian'].map((name,i) => <button key={name} className={role === name ? 'selected' : ''} aria-pressed={role === name} onClick={() => {setRole(name);setPage(name === 'Julian' ? 'Adventure map' : 'Overview')}}><span className={'avatar avatar-'+i}>{name[0]}</span>{name}</button>)}</div>
-    <div className="nav-label">OUR LIFE TOGETHER</div>
-    <nav aria-label="Family pages">{familyLinks.map(renderLink)}</nav>
-    <div className="nav-label">JULIAN’S LITTLE WORLD</div>
-    <nav aria-label="Julian’s adventures">{childLinks.map(renderLink)}</nav>
-    <div className="sidebar-note"><span>🌱</span><strong>Growing together</strong><p>Little moments today.<br/>Beautiful memories tomorrow.</p></div>
-    <div className="sidebar-footer"><span className={'avatar avatar-'+(role === 'Mom' ? 0 : 1)}>{role[0]}</span><div><strong>{role}’s space</strong><small>Our little family</small></div><Icon name="heart" size={17}/></div>
+  return <aside className="sidebar managed-sidebar">
+    <div className="nav-brand-row"><a className="brand" href="#" onClick={event => {event.preventDefault();navigate('Overview')}}><span className="brand-icon">✳</span>Bubbi Cafe<span className="brand-dot">.</span></a><button className="nav-menu-toggle" aria-expanded={menuOpen} aria-controls="family-navigation" onClick={() => setMenuOpen(open => !open)}>{menuOpen ? 'Close' : 'Menu'}<span aria-hidden="true">{menuOpen ? '×' : '☰'}</span></button></div>
+    <label className="space-picker">Family space<select value={role} onChange={event => {const name = event.target.value;setRole(name);navigate(name === 'Julian' ? 'Adventure map' : 'Overview')}}>{['Mom', 'Dad', 'Julian'].map(name => <option key={name}>{name}</option>)}</select></label>
+    <div className="nav-current-page">{page === 'Overview' ? 'Family home' : page}</div>
+    <nav id="family-navigation" className={menuOpen ? 'managed-navigation is-open' : 'managed-navigation'} aria-label="Family navigation">
+      {renderLink(['Overview', 'home', 'Home'])}
+      {groups.map(group => <details key={`${group.title}-${page}`} className="nav-group" open={group.links.some(([target]) => target === page) || (page === 'Overview' && group.title === 'Family essentials')}><summary>{group.title}<span aria-hidden="true">⌄</span></summary><div>{group.links.map(renderLink)}</div></details>)}
+    </nav>
   </aside>
 }

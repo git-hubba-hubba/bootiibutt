@@ -1,0 +1,43 @@
+.app-shell .managed-sidebar { padding-top: 24px; }
+.nav-brand-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.nav-menu-toggle { display: none; }
+.app-shell .space-picker { display: flex; flex-direction: column; gap: 7px; margin: 26px 0; color: #526d88; font-size: 11px; font-weight: 600; }
+.space-picker select { width: 100%; border: 1px solid #b8d2ef; background: #edf4fc; color: #143e70; border-radius: 8px; padding: 10px 12px; min-height: 44px; font-size: 14px; }
+.nav-current-page { display: none; }
+.app-shell .sidebar nav.managed-navigation { display: flex; flex-direction: column; gap: 12px; margin: 0; overflow: visible; }
+.app-shell .managed-navigation button { width: 100%; min-height: 44px; font-size: 13px; white-space: normal; }
+.nav-group { border-top: 1px solid #cddff2; padding-top: 8px; }
+.nav-group summary { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 10px 8px; min-height: 44px; font-size: 11px; font-weight: 700; color: #526d88; cursor: pointer; list-style: none; }
+.nav-group summary::-webkit-details-marker, .child-more summary::-webkit-details-marker { display: none; }
+.nav-group[open] summary > span, .child-more[open] summary > span { transform: rotate(180deg); }
+.nav-group > div { display: flex; flex-direction: column; gap: 4px; margin-top: 4px; }
+.app-shell.child-mode .managed-child-nav { gap: 20px; }
+.app-shell .managed-child-nav .space-picker { margin: 0 0 0 auto; color: #b1c7df; }
+.app-shell .managed-child-nav .space-picker select { background: #102e51; color: #edf5ff; border-color: #4779aa; }
+.app-shell .managed-child-nav nav { order: 3; flex-basis: 100%; justify-content: center; margin: 0; overflow: visible; }
+.child-more { position: relative; }
+.child-more summary { cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 12px 15px; color: #c2d7ed; font-size: 12px; font-weight: 700; border: 2px solid transparent; border-radius: 7px; list-style: none; }
+.child-more summary.selected, .child-more[open] summary { background: #174f8b; border-color: #ff983f; color: #fff1e4; }
+.child-more > div { position: absolute; top: calc(100% + 8px); right: 0; width: 190px; display: flex; flex-direction: column; padding: 8px; gap: 4px; background: #102e51; border: 1px solid #4779aa; border-radius: 10px; box-shadow: 0 10px 30px #0005; z-index: 30; }
+.app-shell .child-more > div button { width: 100%; flex-direction: row; text-align: left; }
+@media (min-width: 1101px) {
+  .app-shell .managed-child-nav nav { order: 0; flex-basis: auto; margin-left: auto; }
+  .app-shell .managed-child-nav .space-picker { order: 3; margin-left: 0; }
+}
+@media (max-width: 650px) {
+  .app-shell .managed-sidebar { padding: 16px; }
+  .app-shell .managed-sidebar .brand { font-size: 22px; }
+  .nav-menu-toggle { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 8px 12px; border: 1px solid #b8d2ef; border-radius: 8px; background: #e3efff; color: #174f8b; }
+  .app-shell .managed-sidebar .space-picker { flex-direction: row; align-items: center; justify-content: space-between; margin: 12px 0 0; }
+  .managed-sidebar .space-picker select { width: 140px; }
+  .nav-current-page { display: block; margin-top: 14px; font-size: 12px; color: #205b96; font-weight: 600; }
+  .app-shell .sidebar nav.managed-navigation { display: none; }
+  .app-shell .sidebar nav.managed-navigation.is-open { display: flex; margin-top: 16px; padding: 0; }
+  .app-shell.child-mode .managed-child-nav { gap: 12px; }
+  .app-shell .managed-child-nav .space-picker { font-size: 10px; }
+  .managed-child-nav .space-picker select { padding: 8px; font-size: 16px; }
+  .app-shell .managed-child-nav nav { width: 100%; gap: 4px; justify-content: stretch; padding: 4px 0; }
+  .app-shell .managed-child-nav nav > button, .managed-child-nav nav > details { flex: 1; min-width: 0; }
+  .app-shell .managed-child-nav nav > button { padding: 8px 5px; font-size: 11px; }
+  .child-more summary { height: 100%; padding: 8px 5px; font-size: 11px; }
+}
