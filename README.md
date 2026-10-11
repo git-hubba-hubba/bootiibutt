@@ -89,7 +89,7 @@ This is a **local development foundation**, bound to loopback. The Mom/Dad/Julia
 
 Google/Apple automatic calendar integration and push/browser notifications are not implemented. Calendar syncing here means app-to-app refresh, conflict alerts are in-app, and external calendars use a manual export. Automatic provider sync needs OAuth credentials, token storage, calendar subscriptions, and reconciliation. SMS and email need configured SMTP/Twilio accounts; they have not been tested against live providers. No external alerts are sent during setup or checks. This app is not an emergency response service.
 
-Before deployment, uploads also need content-signature scanning, private object storage, lifecycle cleanup, and quotas. Emergency sending needs durable rate limits, authenticated authorization, verified recipients, delivery callbacks, and operational monitoring. No hosting or publication is configured.
+Before deployment, uploads also need content-signature scanning, private object storage, lifecycle cleanup, and quotas. Emergency sending needs durable rate limits, authenticated authorization, verified recipients, delivery callbacks, and operational monitoring. Render configuration is included below.
 
 ## Shows
 
@@ -108,3 +108,26 @@ Without MongoDB, imported cards remain in the local file, while other edits foll
 ## Vital Info dashboard
 
 Vital Info opens as read-only summary cards for birthday, allergies, diet, health, behavioral support, medical/dental/vision providers, trusted contacts, and insurance. Each field, contact slot, and insurance card has an Edit button that opens a focused dialog. Cancel discards the draft; Save updates the selected record while retaining other vital data. Insurance contacts, benefits, and source documents expand within each card. Native dialogs provide keyboard focus containment, Escape to cancel, and focus restoration. Session-only saves are labeled when MongoDB is disconnected.
+
+
+## Deploy to Render
+
+Push this `julian` repository to your Git provider. In Render, choose **New → Blueprint**, connect the repository, and use `render.yaml`. The blueprint assumes `package.json` is at the repository root. For a repository containing the outer folder, use `julian/render.yaml` as the blueprint path and add `rootDir: julian` to its service.
+
+The blueprint creates a paid Starter web service and a 1 GB persistent disk. Review the displayed cost before creating it. Set `APP_USERNAME`, a strong unique `APP_PASSWORD`, and `MONGODB_URI` when prompted. Use a hosted MongoDB database and allow Render’s outbound IPs in its network settings.
+
+For manual Web Service setup:
+
+- Root directory: blank for this repository, or `julian` if deploying the outer repository.
+- Build: `npm ci --include=dev && npm run build`
+- Start: `npm start`
+- Health check: `/api/health`
+- Node version: `24.20.0`
+- Environment: `NODE_ENV=production`, `APP_USERNAME`, `APP_PASSWORD`, `MONGODB_URI`, `UPLOAD_DIR=/var/data/uploads`.
+- Persistent disk: mount at `/var/data` for photos and documents.
+
+Express serves the frontend and API together on Render’s assigned port. The browser asks for the shared login. Missing production login credentials stop startup. Only `/api/health` is public; it checks the process and reports database status. A disconnected database uses the existing demo behavior.
+
+Optional learning and emergency provider credentials are listed in `.env.example`; set these in Render’s Environment settings. Local `.env` files, local database records, and ignored private card files are not uploaded. Private card originals need a separate deliberate migration. Never commit secrets or private cards.
+
+The shared login does not provide separate parent accounts or server-enforced Mom/Dad/Julian permissions. The production gaps above still apply before storing sensitive child records. Use Render’s HTTPS URL.

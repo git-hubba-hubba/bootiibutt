@@ -5,7 +5,7 @@ import multer from 'multer'
 import nodemailer from 'nodemailer'
 import { mkdir } from 'node:fs/promises'
 import { resolve, extname } from 'node:path'
-import { randomUUID } from 'node:crypto'
+import { randomUUID, timingSafeEqual, createHash } from 'node:crypto'
 import { Family } from './models.js'
 import { initial } from '../src/data/initial.js'
 import { learningRouter } from './learning/routes.js'
@@ -15,7 +15,27 @@ import { fileURLToPath } from 'node:url'
 const importedVital = await readVitalImport()
 const seededInitial = { ...initial, vital: mergeVitalImport(initial.vital, importedVital) }
 const app = express()
-const uploadPath = resolve('server/uploads')
+const production = process.env.NODE_ENV === 'production'
+if (production && (!process.env.APP_USERNAME || !process.env.APP_PASSWORD)) {
+ throw new Error('APP_USERNAME and APP_PASSWORD are required in production.')
+}
+app.get('/api/health', (_req, res) => {
+ res.set('Cache-Control', 'no-store')
+ res.json({database: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected'})
+})
+if (production) {
+ const digest = value => createHash('sha256').update(value).digest()
+ const expected = digest(`${process.env.APP_USERNAME}:${process.env.APP_PASSWORD}`)
+ app.use((req, res, next) => {
+  const authorization = req.get('authorization') || ''
+  const credentials = authorization.startsWith('Basic ') ? Buffer.from(authorization.slice(6), 'base64').toString('utf8') : ''
+  if (timingSafeEqual(digest(credentials), expected)) return next()
+  res.set('WWW-Authenticate', 'Basic realm="Bubbi Cafe", charset="UTF-8"')
+  res.set('Cache-Control', 'no-store')
+  res.status(401).send('Sign in to access Bubbi Cafe.')
+ })
+}
+const uploadPath = resolve(process.env.UPLOAD_DIR || 'server/uploads')
 await mkdir(uploadPath,{recursive:true})
 app.use(express.json({limit:'1mb'}))
 app.use('/api',(_req,res,next) => {res.set('Cache-Control','no-store');next()})
@@ -29,7 +49,6 @@ app.get('/api/vital-cards/:name', (req,res) => {
  res.set('Content-Security-Policy',"default-src 'none'; sandbox")
  res.sendFile(req.params.name,{root:fileURLToPath(new URL('cards/',privateDirectory))})
 })
-app.get('/api/health',(_req,res) => res.json({database:mongoose.connection.readyState === 1 ? 'connected':'disconnected'}))
 app.use('/api',(_req,res,next) => { if(mongoose.connection.readyState !== 1) return res.status(503).json({message:'MongoDB is not connected.'});next() })
 const serialize = family => {const result = family.toObject();delete result._id;delete result.__v;delete result.key;delete result.createdAt;delete result.updatedAt;return result}
 app.get('/api/family',async (_req,res,next) => {try { const family = await Family.findOneAndUpdate({key:'family'},{$setOnInsert:{...seededInitial,key:'family',revision:0}},{upsert:true,new:true,runValidators:true});res.json(serialize(family)) } catch(error) {next(error)} })
@@ -68,10 +87,18 @@ app.post('/api/emergency',async (req,res) => {
  const failed = results.filter(result => result.status === 'rejected').length
  res.status(failed ? 502 : 202).json({message:failed ? `${results.length-failed} of ${results.length} delivery requests accepted. Some channels failed; contact the other parent directly.` : 'Email and SMS providers accepted the alert. Delivery is not yet confirmed.'})
 })
+app.use('/api', (_req, res) => res.status(404).json({message:'API route not found.'}))
+if (production) {
+ const frontendPath = fileURLToPath(new URL('../dist/', import.meta.url))
+ app.use(express.static(frontendPath))
+ app.get('/{*path}', (_req, res) => res.sendFile('index.html', {root:frontendPath}))
+}
 app.use((error,_req,res,_next) => {res.status(error instanceof multer.MulterError || error.name === 'ValidationError' ? 400 : 500).json({message:error instanceof multer.MulterError ? 'Upload failed. Maximum file size is 10 MB.' : 'Unable to save this request. Check your input and try again.'})})
 if(process.env.MONGODB_URI) {try {await mongoose.connect(process.env.MONGODB_URI,{serverSelectionTimeoutMS:5000}); const existing = await Family.findOne({key:'family'})
  if(existing && importedVital && !existing.vital.insuranceImports?.includes(importedVital.importId)) {
   await Family.updateOne({_id:existing._id,revision:existing.revision},{$set:{vital:mergeVitalImport(existing.vital.toObject(),importedVital)},$inc:{revision:1}},{runValidators:true})
  }
  console.log('MongoDB connected.')} catch {console.error('MongoDB connection failed. Check MONGODB_URI.')}} else console.log('MONGODB_URI is missing; API returns unavailable until configured.')
-app.listen(Number(process.env.PORT || 3001),'127.0.0.1',() => console.log('Family API running at http://127.0.0.1:3001 (local development only).'))
+const port = Number(process.env.PORT || 3001)
+const host = production ? '0.0.0.0' : '127.0.0.1'
+app.listen(port, host, () => console.log(`Bubbi Cafe listening on ${host}:${port}`))
